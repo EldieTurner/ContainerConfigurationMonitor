@@ -18,5 +18,5 @@ install:
 script:
   - dotnet --version
   - dotnet build src/ContainerConfigurationMonitor/ContainerConfigurationMonitor.csproj --framework netstandard2.0
-  - dotnet build src/ContainerConfigurationMonitorTests/ContainerConfigurationMonitor.Tests.csproj --framework net8.0
-  - dotnet test src/ContainerConfigurationMonitorTests/ContainerConfigurationMonitor.Tests.csproj --framework net8.0
+  - dotnet build src/ContainerConfigurationMonitorService.Tests/ContainerConfigurationMonitorService.Tests.csproj --framework net8.0
+  - dotnet test src/ContainerConfigurationMonitorService.Tests/ContainerConfigurationMonitorService.Tests.csproj --framework net8.0
