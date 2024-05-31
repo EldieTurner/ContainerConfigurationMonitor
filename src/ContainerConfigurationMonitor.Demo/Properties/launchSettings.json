@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ContainerConfigurationMonitor.Demo": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

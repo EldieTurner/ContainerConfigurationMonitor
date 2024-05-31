@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  containerconfigurationmonitor.demo:
+    image: ${DOCKER_REGISTRY-}containerconfigurationmonitordemo
+    build:
+      context: .
+      dockerfile: ContainerConfigurationMonitor.Demo/Dockerfile
+    volumes:
+      - /c/temp/ccm/config:/config

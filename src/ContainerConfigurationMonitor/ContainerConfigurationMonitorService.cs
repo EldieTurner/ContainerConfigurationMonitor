@@ -13,27 +13,26 @@ namespace ContainerConfigurationMonitor
         private readonly IConfigurationRoot _configurationRoot;
         private readonly string _configFilePath;
         private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(5);
-        public ContainerConfigurationMonitorService(IContainerFileWatcher fileWatcher, IConfiguration configuration)
-        {
-            _fileWatcher = fileWatcher;
-            _configurationRoot = (IConfigurationRoot)configuration;
-            _configFilePath = _configurationRoot.Providers
-                .OfType<Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider>()
-                .First()
-                .Source.Path;
+        private readonly string _directoryPath;
 
+        public ContainerConfigurationMonitorService(IContainerFileWatcher fileWatcher, IConfiguration configuration, string configFilePath)
+        {
+            _fileWatcher = fileWatcher ?? throw new ArgumentNullException(nameof(fileWatcher));
+            _configurationRoot = configuration as IConfigurationRoot ?? throw new ArgumentException("Configuration must be an IConfigurationRoot", nameof(configuration));
+            _configFilePath = configFilePath ?? throw new ArgumentNullException(nameof(configFilePath));
+            _directoryPath = System.IO.Path.GetDirectoryName(_configFilePath);
             _fileWatcher.OnFileChanged += OnConfigurationFileChanged;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            _fileWatcher.AddWatch(_configFilePath, _pollingInterval);
+            _fileWatcher.AddWatch(_directoryPath, _pollingInterval);
             return Task.CompletedTask;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            _fileWatcher.RemoveWatch(_configFilePath);
+            _fileWatcher.RemoveWatch(_directoryPath);
             return Task.CompletedTask;
         }
 
@@ -42,6 +41,7 @@ namespace ContainerConfigurationMonitor
             if (changeType == ChangeType.Modified && filePath == _configFilePath)
             {
                 _configurationRoot.Reload();
+                Console.WriteLine($"Configuration reloaded at {DateTime.Now}");
             }
         }
     }
