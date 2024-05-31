@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using ContainerFileSystemWatcher;
-using System.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace ContainerConfigurationMonitor
 {
@@ -14,9 +14,11 @@ namespace ContainerConfigurationMonitor
         private readonly string _configFilePath;
         private readonly TimeSpan _pollingInterval = TimeSpan.FromSeconds(5);
         private readonly string _directoryPath;
+        private readonly ILogger<ContainerConfigurationMonitorService> _logger;
 
-        public ContainerConfigurationMonitorService(IContainerFileWatcher fileWatcher, IConfiguration configuration, string configFilePath)
+        public ContainerConfigurationMonitorService(ILogger<ContainerConfigurationMonitorService> logger, IContainerFileWatcher fileWatcher, IConfiguration configuration, string configFilePath)
         {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _fileWatcher = fileWatcher ?? throw new ArgumentNullException(nameof(fileWatcher));
             _configurationRoot = configuration as IConfigurationRoot ?? throw new ArgumentException("Configuration must be an IConfigurationRoot", nameof(configuration));
             _configFilePath = configFilePath ?? throw new ArgumentNullException(nameof(configFilePath));
@@ -41,7 +43,7 @@ namespace ContainerConfigurationMonitor
             if (changeType == ChangeType.Modified && filePath == _configFilePath)
             {
                 _configurationRoot.Reload();
-                Console.WriteLine($"Configuration reloaded at {DateTime.Now}");
+                _logger.LogInformation($"Configuration reloaded at {DateTime.Now}");
             }
         }
     }

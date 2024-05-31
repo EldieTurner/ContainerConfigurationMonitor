@@ -1,6 +1,7 @@
 using Moq;
 using Microsoft.Extensions.Configuration;
 using ContainerFileSystemWatcher;
+using Microsoft.Extensions.Logging;
 
 namespace ContainerConfigurationMonitor.Tests;
 
@@ -16,6 +17,7 @@ public class ContainerConfigurationMonitorServiceTests
     [TestInitialize]
     public void SetUp()
     {
+        var _logger = new Mock<ILogger<ContainerConfigurationMonitorService>>();
         _testFileWatcher = new TestContainerFileWatcher();
         _mockConfigurationRoot = new Mock<IConfigurationRoot>();
 
@@ -23,7 +25,7 @@ public class ContainerConfigurationMonitorServiceTests
         _mockConfigurationRoot.Setup(c => c.Providers).Returns(new List<IConfigurationProvider> { configurationProvider });
 
         _directoryPath = System.IO.Path.GetDirectoryName(_configFilePath);
-        _service = new ContainerConfigurationMonitorService(_testFileWatcher, _mockConfigurationRoot.Object, _configFilePath);
+        _service = new ContainerConfigurationMonitorService(_logger.Object, _testFileWatcher, _mockConfigurationRoot.Object, _configFilePath);
 
         Console.WriteLine($"Test Setup: _configFilePath = {_configFilePath}, _directoryPath = {_directoryPath}");
     }

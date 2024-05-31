@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using System.Threading;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace ContainerConfigurationMonitor
 {
@@ -15,6 +16,7 @@ namespace ContainerConfigurationMonitor
             services.AddContainerFileSystemWatcher();
             services.AddSingleton<IHostedService>(provider =>
                                     new ContainerConfigurationMonitorService(
+                                        provider.GetRequiredService<ILogger<ContainerConfigurationMonitorService>>(),
                                         provider.GetRequiredService<IContainerFileWatcher>(),
                                         provider.GetRequiredService<IConfiguration>(),
                                         configFilePath));
