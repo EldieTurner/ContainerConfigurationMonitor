@@ -13,18 +13,16 @@ A .NET library for monitoring configuration file changes in containers.
 
 ## Installation
 
-You can install the `ContainerConfigurationMonitorService` via NuGet. 
+You can install the `ContainerConfigurationMonitorService` via NuGet.  $${\color{red}NOT PUSHED TO NUGET YET}$$
 
-1. Add the package to your project (this step assumes the package is published to a NuGet repository):
+1. Add the package to your project :
 
     ```sh
     dotnet add package ContainerConfigurationMonitorService
     ```
   Or add the package with Package Manager
-  
-    ```sh
+
     Install-Package ContainerConfigurationMonitorService
-    ```
 
 2. Register the `ContainerConfigurationMonitorService` in your `Startup.cs` or `Program.cs`:
 
