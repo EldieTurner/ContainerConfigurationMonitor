@@ -6,23 +6,23 @@
 		<Authors>Eldie Turner</Authors>
 		<Company>Dead Simple Solutions llc</Company>
 		<PackageId>ContainerConfigurationMonitor</PackageId>
-		<Version>0.1.1</Version>
+		<Version>0.1.2</Version>
 		<Description>A .NET library for monitoring configuration file changes in containers.</Description>
-		<PackageTags>filesystem appsettings watcher polling container</PackageTags>
+		<PackageTags>filesystem appsettings configuraiton watcher polling container</PackageTags>
 		<RepositoryUrl>https://github.com/EldieTurner/ContainerConfigurationMonitor</RepositoryUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ContainerFileSystemWatcher" Version="0.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageReference Include="ContainerFileSystemWatcher" Version="0.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0-preview.4.24266.19" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.0-preview.4.24266.19" />
     <PackageReference Include="Moq" Version="4.20.70" />
   </ItemGroup>
 	
 	<ItemGroup>
-		<None Include="LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+		<None Include="LICENSE.txt" Pack="true" PackagePath="$(PackageLicenseFile)" />
 		<None Update="README.md">
 			<Pack>true</Pack>
 			<PackagePath>README.md</PackagePath>
