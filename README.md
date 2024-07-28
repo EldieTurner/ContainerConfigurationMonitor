@@ -1,5 +1,5 @@
 # ContainerConfigurationMonitor
-[![.NET Core CI]()](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml)
+[![.NET Core CI](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml/badge.svg)](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml)
 
 A .NET library for monitoring configuration file changes in containers.
 
