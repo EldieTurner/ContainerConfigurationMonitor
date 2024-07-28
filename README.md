@@ -1,5 +1,5 @@
 # ContainerConfigurationMonitor
-[![.NET Core CI](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml/badge.svg)](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml)
+[![.NET Core CI]()](https://github.com/EldieTurner/ContainerConfigurationMonitor/actions/workflows/default.yaml)
 
 A .NET library for monitoring configuration file changes in containers.
 
@@ -13,7 +13,7 @@ A .NET library for monitoring configuration file changes in containers.
 
 ## Installation
 
-You can install the `ContainerConfigurationMonitorService` via NuGet.  $${\color{red}NOT PUSHED TO NUGET YET}$$
+You can install the `ContainerConfigurationMonitorService` via NuGet.
 
 1. Add the package to your project :
 
